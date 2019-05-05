@@ -1,0 +1,6 @@
+/.project
+.idea/
+logs/
+target/
+lora-app-rest.iml
+lora-app.iml

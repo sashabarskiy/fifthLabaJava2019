@@ -1,0 +1,132 @@
+<!--<configuration>-->
+<!--<appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">-->
+<!--<encoder>-->
+<!--<pattern>%d{dd.MM.yy HH:mm:ss.SSS} [%thread] %-5level %logger{15} - %msg %marker%n</pattern>-->
+<!--</encoder>-->
+<!--</appender>-->
+
+<!--<appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">-->
+<!--<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">-->
+<!--<fileNamePattern>logs/%d{dd-MM-yy}.log</fileNamePattern>-->
+<!--<maxHistory>100</maxHistory>    &lt;!&ndash;days&ndash;&gt;-->
+<!--</rollingPolicy>-->
+<!--<encoder>-->
+<!--<pattern>%d{MMM dd HH:mm:ss} [%thread] level=%.-5level msg=%msg %marker%n</pattern>-->
+<!--</encoder>-->
+<!--</appender>-->
+
+<!--<appender name="FILE_REST" class="ch.qos.logback.core.rolling.RollingFileAppender">-->
+<!--<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">-->
+<!--<fileNamePattern>logs/%d{dd-MM-yy}_REST.log</fileNamePattern>-->
+<!--<maxHistory>100</maxHistory>    &lt;!&ndash;days&ndash;&gt;-->
+<!--</rollingPolicy>-->
+<!--<encoder>-->
+<!--<pattern>%d{MMM dd HH:mm:ss} [%thread] level=%.-5level msg=%msg %marker%n</pattern>-->
+<!--</encoder>-->
+<!--</appender>-->
+
+<!--<logger name="ua.com.radmirtech.lora.app.Application" level="INFO">-->
+<!--<appender-ref ref="FILE"/>-->
+<!--</logger>-->
+<!--<logger name="ua.com.radmirtech.lora.app.mqtt" level="INFO">-->
+<!--<appender-ref ref="FILE"/>-->
+<!--</logger>-->
+<!--<logger name="ua.com.radmirtech.lora.app.dao" level="INFO">-->
+<!--<appender-ref ref="FILE"/>-->
+<!--</logger>-->
+<!--<logger name="ua.com.radmirtech.lora.app.parsers" level="INFO">-->
+<!--<appender-ref ref="FILE"/>-->
+<!--</logger>-->
+<!--<logger name="ua.com.radmirtech.lora.app.service" level="INFO">-->
+<!--<appender-ref ref="FILE"/>-->
+<!--</logger>-->
+<!--<logger name="ua.com.radmirtech.lora.app.utils" level="INFO">-->
+<!--<appender-ref ref="FILE"/>-->
+<!--</logger>-->
+<!--<logger name="ua.com.radmirtech.lora.app.builder" level="INFO">-->
+<!--<appender-ref ref="FILE"/>-->
+<!--</logger>-->
+
+<!--<logger name="ua.com.radmirtech.lora.app.security" level="INFO">-->
+<!--<appender-ref ref="FILE_REST"/>-->
+<!--</logger>-->
+<!--<logger name="ua.com.radmirtech.lora.app.controller" level="INFO">-->
+<!--<appender-ref ref="FILE_REST"/>-->
+<!--</logger>-->
+
+<!--<root level="INFO">-->
+<!--&lt;!&ndash;&lt;!&ndash;<appender-ref ref="STDOUT"/>&ndash;&gt;&ndash;&gt;-->
+<!--</root>-->
+<!--</configuration>-->
+
+<configuration>
+
+    <appender name="FILE_PACKETS" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>logs/packets/%d{dd-MM-yy}_PACKETS.log</fileNamePattern>
+            <maxHistory>100</maxHistory>    <!--days-->
+        </rollingPolicy>
+        <encoder>
+            <pattern>%d{MMM dd HH:mm:ss} [%-20thread] level=%.-5level %-40class{36}: msg=%msg %marker%n</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="FILE_REST" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>logs/rest/%d{dd-MM-yy}_REST.log</fileNamePattern>
+            <maxHistory>100</maxHistory>    <!--days-->
+        </rollingPolicy>
+        <encoder>
+            <pattern>%d{MMM dd HH:mm:ss} [%-20thread] level=%.-5level %-40class{36}: msg=%msg %marker%n</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="FILE_MQTT" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>logs/mqtt/%d{dd-MM-yy}_MQTT.log</fileNamePattern>
+            <maxHistory>100</maxHistory>    <!--days-->
+        </rollingPolicy>
+        <encoder>
+            <pattern>%d{MMM dd HH:mm:ss} [%-20thread] level=%.-5level %-40class{36}: msg=%msg %marker%n</pattern>
+        </encoder>
+    </appender>
+
+    <include resource="org/springframework/boot/logging/logback/base.xml"/>
+
+
+    <logger name="org.springframework.web" level="INFO"/>
+    <logger name="org.springframework.security" level="INFO"/>
+    <logger name="org.springframework" level="INFO"/>
+
+
+    <logger name="ua.com.radmirtech.lora.app.controller" level="INFO">
+        <appender-ref ref="FILE_REST"/>
+    </logger>
+
+    <logger name="ua.com.radmirtech.lora.app.mqtt" level="INFO">
+        <appender-ref ref="FILE_MQTT"/>
+    </logger>
+
+    <logger name="ua.com.radmirtech.lora.app.service.impl.MqttServiceImpl" level="INFO">
+        <appender-ref ref="FILE_MQTT"/>
+    </logger>
+
+    <logger name="ua.com.radmirtech.lora.app.parsers" level="INFO">
+        <appender-ref ref="FILE_PACKETS"/>
+    </logger>
+
+    <logger name="ua.com.radmirtech.lora.app.security" level="DEBUG"/>
+
+    <logger name="ua.com.radmirtech.lora.app.service.impl.PacketServiceImpl" level="INFO">
+        <appender-ref ref="FILE_PACKETS"/>
+    </logger>
+
+    <logger name="ua.com.radmirtech.lora.app.service.impl.ReceiptServiceImpl" level="INFO">
+        <appender-ref ref="FILE_PACKETS"/>
+    </logger>
+
+    <!--<logger name="org.hibernate.SQL">-->
+        <!--<level value="DEBUG" />-->
+    <!--</logger>-->
+
+</configuration>

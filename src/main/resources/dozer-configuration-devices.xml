@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mappings xmlns="http://dozer.sourceforge.net" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:schemaLocation="http://dozer.sourceforge.net
+          http://dozer.sourceforge.net/schema/beanmapping.xsd">
+
+    <mapping stop-on-errors="true" map-id="DevActDtoToDevActRes" type="one-way" map-null="false">
+        <class-a>ua.com.radmirtech.lora.app.dto.device.dto.DeviceActivationDto</class-a>
+        <class-b>ua.com.radmirtech.lora.app.dto.device.resource.DeviceActivationResource</class-b>
+    </mapping>
+
+    <mapping stop-on-errors="true" map-id="DevDtoToDevMod" type="one-way" map-null="false">
+        <class-a>ua.com.radmirtech.lora.app.dto.device.dto.DeviceDto</class-a>
+        <class-b>ua.com.radmirtech.lora.app.model.Device</class-b>
+    </mapping>
+
+    <mapping stop-on-errors="true" map-id="DevEntToDevResource" type="one-way" map-null="false">
+        <class-a>ua.com.radmirtech.lora.app.entity.DeviceEntity</class-a>
+        <class-b>ua.com.radmirtech.lora.app.dto.device.resource.DeviceListResource</class-b>
+        <field>
+            <a>eui</a>
+            <b>devEUI</b>
+        </field>
+        <field>
+            <a>id</a>
+            <b>deviceId</b>
+        </field>
+    </mapping>
+
+    <mapping stop-on-errors="true" map-id="DevEntToDevMod" type="one-way" map-null="false">
+        <class-a>ua.com.radmirtech.lora.app.entity.DeviceEntity</class-a>
+        <class-b>ua.com.radmirtech.lora.app.model.Device</class-b>
+        <field>
+            <a>eui</a>
+            <b>devEUI</b>
+        </field>
+        <field>
+            <a>devName</a>
+            <b>name</b>
+        </field>
+    </mapping>
+
+    <mapping stop-on-errors="true" map-id="DevModToDevEnt" type="one-way" map-null="false">
+        <class-a>ua.com.radmirtech.lora.app.model.Device</class-a>
+        <class-b>ua.com.radmirtech.lora.app.entity.DeviceEntity</class-b>
+        <field>
+            <a>devEUI</a>
+            <b>eui</b>
+        </field>
+        <field>
+            <a>name</a>
+            <b>devName</b>
+        </field>
+    </mapping>
+</mappings>

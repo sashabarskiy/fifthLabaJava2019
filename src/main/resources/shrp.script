@@ -1,0 +1,173 @@
+CREATE SEQUENCE shrp_packet_id_seq;
+
+
+CREATE TABLE public.shrp_packet
+(
+  id             BIGINT    DEFAULT nextval('shrp_packet_id_seq' :: REGCLASS) PRIMARY KEY NOT NULL,
+  mod_time       TIMESTAMP DEFAULT now(),
+  node_name      TEXT,
+  rxinfo_rssi    BIGINT,
+  rxinfo_lorasnr DOUBLE PRECISION,
+  date_time       TIMESTAMP,
+
+  da1            REAL,
+  da1er          INTEGER,
+  da2            REAL,
+  da2er          INTEGER,
+  da3            REAL,
+  da3er          INTEGER,
+  dt1            REAL,
+  dt1er          INTEGER,
+  dt2            REAL,
+  kcsher         INTEGER,
+  diskd          INTEGER,
+
+  crc_checksum   BOOLEAN   DEFAULT FALSE
+);
+
+
+CREATE UNIQUE INDEX shrp_packet_id_uindex
+  ON public.shrp_packet (id);
+
+
+
+
+  CREATE SEQUENCE skz_packet_id_seq;
+
+
+  CREATE TABLE public.skz_packet
+  (
+    id             BIGINT    DEFAULT nextval('skz_packet_id_seq' :: REGCLASS) PRIMARY KEY NOT NULL,
+    mod_time       TIMESTAMP DEFAULT now(),
+    node_name      TEXT,
+    rxinfo_rssi    BIGINT,
+    rxinfo_lorasnr DOUBLE PRECISION,
+    date_time       TIMESTAMP,
+
+    min            REAL,
+    max            REAL,
+    mid            REAL,
+    err          INTEGER,
+
+    crc_checksum   BOOLEAN   DEFAULT FALSE
+  );
+
+
+  CREATE UNIQUE INDEX skz_packet_id_uindex
+    ON public.skz_packet (id);
+
+
+
+
+
+
+
+
+
+
+
+CREATE SEQUENCE shrp_packet_state_id_seq;
+
+CREATE TABLE public.shrp_packet_state
+(
+  id             BIGINT    DEFAULT nextval('shrp_packet_state_id_seq' :: REGCLASS) PRIMARY KEY NOT NULL,
+  mod_time       TIMESTAMP DEFAULT now(),
+  node_name      TEXT,
+  rxinfo_rssi    BIGINT,
+  rxinfo_lorasnr DOUBLE PRECISION,
+  date_time      TIMESTAMP,
+
+  da1            REAL,
+  da1er          INTEGER,
+  da1er_state    TEXT DEFAULT 'unmarked',
+  da2init        REAL,
+  da2res         REAL,
+  da2er          INTEGER,
+  da2er_state    TEXT DEFAULT 'unmarked',
+  da2            REAL,
+  da3er          INTEGER,
+  da3er_state    TEXT DEFAULT 'unmarked',
+  dt1            REAL,
+  dt1er          INTEGER,
+  dt1er_state    TEXT DEFAULT 'unmarked',
+  dt2            REAL,
+  kcsher         INTEGER,
+  diskd          INTEGER,
+
+  crc_checksum   BOOLEAN   DEFAULT FALSE
+);
+
+
+CREATE UNIQUE INDEX shrp_packet_state_id_uindex
+  ON public.shrp_packet_state (id);
+
+
+
+CREATE SEQUENCE skz_packet_state_id_seq;
+
+
+CREATE TABLE public.skz_packet_state
+(
+  id             BIGINT    DEFAULT nextval('skz_packet_state_id_seq' :: REGCLASS) PRIMARY KEY NOT NULL,
+  mod_time       TIMESTAMP DEFAULT now(),
+  node_name      TEXT,
+  rxinfo_rssi    BIGINT,
+  rxinfo_lorasnr DOUBLE PRECISION,
+  date_time      TIMESTAMP,
+
+  min            REAL,
+  max            REAL,
+  mid            REAL,
+
+  err            INTEGER,
+  err_state      TEXT,
+
+  crc_checksum   BOOLEAN   DEFAULT FALSE
+);
+
+
+CREATE UNIQUE INDEX skz_packet_state_id_uindex
+  ON public.skz_packet_state (id);
+
+
+
+
+  CREATE SEQUENCE shrp_error_history_id_seq;
+
+
+  CREATE TABLE public.shrp_error_history
+  (
+    id         BIGINT    DEFAULT nextval('shrp_error_history_id_seq' :: REGCLASS) PRIMARY KEY NOT NULL,
+    mod_time   TIMESTAMP DEFAULT now(),
+    node_name  TEXT,
+    user_login TEXT
+
+  );
+
+
+  CREATE UNIQUE INDEX shrp_error_history_id_uindex
+    ON public.shrp_error_history (id);
+
+
+
+    CREATE SEQUENCE skz_limits_id_seq;
+
+
+    CREATE TABLE public.skz_limits
+    (
+      id       BIGINT    DEFAULT nextval('skz_limits_id_seq' :: REGCLASS) PRIMARY KEY NOT NULL,
+      mod_time TIMESTAMP DEFAULT now(),
+      low  TEXT,
+      high TEXT
+
+    );
+
+
+    CREATE UNIQUE INDEX skz_limits_id_uindex
+      ON public.skz_limits (id);
+
+    INSERT INTO skz_limits (low, high) VALUES (-2.0, -0.5);
+
+
+
+

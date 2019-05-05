@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mappings xmlns="http://dozer.sourceforge.net" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:schemaLocation="http://dozer.sourceforge.net
+          http://dozer.sourceforge.net/schema/beanmapping.xsd">
+
+    <mapping stop-on-errors="true" map-id="PckDtoToPckEnt" type="one-way" map-null="false"
+             relationship-type="non-cumulative" wildcard="true">
+        <class-a>ua.com.radmirtech.lora.app.dto.packet.PacketDto</class-a>
+        <class-b>ua.com.radmirtech.lora.app.entity.PacketEntity</class-b>
+        <field custom-converter="ua.com.radmirtech.lora.app.utils.converter.EuiToEuiIdConverterForAudit">
+            <a>eui</a>
+            <b>deviceId</b>
+        </field>
+
+        <!--TxInfoDto-->
+        <field>
+            <a>TxInfoDto.txInfoFrequency</a>
+            <b>txInfoFrequency</b>
+        </field>
+        <field>
+            <a>TxInfoDto.txInfoAdr</a>
+            <b>txInfoAdr</b>
+        </field>
+        <field>
+            <a>TxInfoDto.txInfoFrequency</a>
+            <b>txInfoCodeRate</b>
+        </field>
+
+        <!--TxInfoDto.DataRate-->
+        <field>
+            <a>TxInfoDto.DataRate.txInfoDataRateModulation</a>
+            <b>txInfoDataRateModulation</b>
+        </field>
+        <field>
+            <a>TxInfoDto.DataRate.txInfoDataRateBandwidth</a>
+            <b>txInfoDataRateBandwidth</b>
+        </field>
+        <field>
+            <a>TxInfoDto.DataRate.txInfoDataRateSpreadFactor</a>
+            <b>txInfoDataRateSpreadFactor</b>
+        </field>
+
+        <!--RxInfoDto.DataRate-->
+        <field>
+            <a>RxInfoDto.rxInfoMac</a>
+            <b>rxInfoMac</b>
+        </field>
+        <field custom-converter="ua.com.radmirtech.lora.app.utils.converter.CustomTimeConverter">
+            <a>RxInfoDto.rxInfoTime</a>
+            <b>rxInfoTime</b>
+        </field>
+        <field>
+            <a>RxInfoDto.rxInfoRssi</a>
+            <b>rxInfoRssi</b>
+        </field>
+        <field>
+            <a>RxInfoDto.rxInfoLoraSnr</a>
+            <b>rxInfoLoraSnr</b>
+        </field>
+        <field>
+            <a>RxInfoDto.rxInfoName</a>
+            <b>rxInfoName</b>
+        </field>
+        <field>
+            <a>RxInfoDto.rxInfoLatitude</a>
+            <b>rxInfoLatitude</b>
+        </field>
+        <field>
+            <a>RxInfoDto.rxInfoLongitude</a>
+            <b>rxInfoLongitude</b>
+        </field>
+        <field>
+            <a>RxInfoDto.rxInfoAltitude</a>
+            <b>rxInfoAltitude</b>
+        </field>
+
+    </mapping>
+</mappings>

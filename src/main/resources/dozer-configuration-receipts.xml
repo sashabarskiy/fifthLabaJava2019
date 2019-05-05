@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mappings xmlns="http://dozer.sourceforge.net" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:schemaLocation="http://dozer.sourceforge.net
+          http://dozer.sourceforge.net/schema/beanmapping.xsd">
+    <mapping stop-on-errors="true" map-id="repModToRepEnt" type="one-way" map-null="false">
+        <class-a>ua.com.radmirtech.lora.app.model.DailyValueReport</class-a>
+        <class-b>ua.com.radmirtech.lora.app.entity.DailyValueReportEntity</class-b>
+    </mapping>
+
+    <mapping stop-on-errors="true" map-id="RecEntToRecRes" type="one-way" map-null="false">
+        <class-a>ua.com.radmirtech.lora.app.entity.ReceiptEntity</class-a>
+        <class-b>ua.com.radmirtech.lora.app.dto.receipt.ReceiptResource</class-b>
+        <field custom-converter="ua.com.radmirtech.lora.app.utils.converter.EuiToEuiIdConverterForAudit">
+            <a>deviceEuiId</a>
+            <b>eui</b>
+        </field>
+    </mapping>
+</mappings>
